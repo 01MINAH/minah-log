@@ -36,8 +36,8 @@ export const projectsData = [
   {
     id: 3,
     title: '꿈틀',
-    description: '우리 아이 꿈의 틀을 잡아주는 맞춤형 성향 진단 및 도서 추천 서비스',
-    image: '/assets/ggumtle/ggumtle_logo.png',
+    description: '우리 아이의 꿈의 틀을 잡아주는 맞춤형 아동 성향 진단 및 도서 추천 서비스 LG유플러스 유레카 SW 교육과정의 경진대회 종합 프로젝트 로 진행한 AI 기반 아동 성향 분석 및 도서 추천 플랫폼입니다.',
+    image: 'assets/ggumtle/mainpage.png',
     period: '2024.10 - 2024.11',
     date: '2024.10',
     duration: '약 1개월 소요',

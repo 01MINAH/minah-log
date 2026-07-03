@@ -2,7 +2,6 @@
 
 안녕하세요! 이번 글에서는 React 프로젝트를 **GitHub Pages**에 배포할 때 자주 마주치는 **public 폴더 내 리소스(이미지, 마크다운 파일 등)의 404 경로 에러** 현상과 이를 우아하게 해결하는 방법에 대해 공유하고자 합니다.
 
----
 
 ## 1. 문제의 발단: 로컬에선 잘 되는데 배포만 하면 404?
 
@@ -22,7 +21,6 @@ GitHub Pages는 사용자/단체 도메인이 아니라면 보통 저장소 이�
 
 이 상황에서 `/content/posts/my-post.md` 경로로 fetch 요청을 보내면, 브라우저는 도메인의 루트를 기준으로 경로를 해석하여 `https://01MINAH.github.io/content/posts/my-post.md`로 요청을 보냅니다. 즉, 중간의 **하위 경로인 `/minah-log-frontend`가 누락**되어 404 에러가 발생하는 것입니다.
 
----
 
 ## 2. 해결 방법 1: `PUBLIC_URL` 환경 변수 활용
 
@@ -45,7 +43,6 @@ React(Create React App)는 빌드 프로세스 중에 `process.env.PUBLIC_URL` �
 const postPath = `${process.env.PUBLIC_URL}/content/posts/my-post.md`;
 ```
 
----
 
 ## 3. 해결 방법 2: 중복 방지를 위한 안전한 URL 유틸 함수 작성
 
@@ -88,7 +85,6 @@ fetch(getPublicUrl('/content/posts/my-post.md'))
 
 이 방식을 채택하면 개발 환경과 GitHub Pages 배포 환경 모두에서 별도의 코드 수정 없이 파일이 유연하고 정확하게 매핑됩니다.
 
----
 
 ## 4. 요약 및 느낀 점
 
