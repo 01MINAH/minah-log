@@ -18,11 +18,9 @@ const Blog = () => {
   const sortedPosts = React.useMemo(() => {
     const copy = [...postsData];
     if (sortOption === 'latest') {
-      // newest id first
-      copy.sort((a, b) => b.id - a.id);
+      copy.sort((a, b) => b.date.localeCompare(a.date));
     } else {
-      // sort by date ascending
-      copy.sort((a, b) => new Date(a.date) - new Date(b.date));
+      copy.sort((a, b) => a.date.localeCompare(b.date));
     }
     return copy;
   }, [sortOption]);

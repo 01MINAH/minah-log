@@ -14,6 +14,16 @@ const renderer = {
       .replace(/\s+/g, '-'); // replace spaces with hyphens
     
     return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
+  },
+  image({ href, title, text }) {
+    if (!href) return '';
+    let cleanHref = href;
+    if (cleanHref.includes('assets/')) {
+      const idx = cleanHref.indexOf('assets/');
+      cleanHref = '/' + cleanHref.substring(idx);
+    }
+    const resolvedUrl = getPublicUrl(cleanHref);
+    return `<img src="${resolvedUrl}" alt="${text || ''}" title="${title || ''}" class="markdown-image" style="max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border-radius: 8px; box-shadow: var(--shadow-sm);" />`;
   }
 };
 

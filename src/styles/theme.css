@@ -1018,6 +1018,33 @@ footer p {
   margin: 2.5rem 0;
 }
 
+/* Markdown Tables Styling */
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  background-color: var(--card-bg);
+}
+
+.markdown-body th,
+.markdown-body td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  text-align: left;
+  line-height: 1.5;
+}
+
+.markdown-body th {
+  background-color: var(--primary-light);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.markdown-body tr:nth-child(even) {
+  background-color: rgba(244, 240, 235, 0.4);
+}
+
 /* Skills, Activities, Career Pages Simple Styling */
 .meta-content-section {
   background-color: var(--card-bg);
