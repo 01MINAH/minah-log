@@ -22,15 +22,9 @@ const Projects = () => {
   const sortedProjects = React.useMemo(() => {
     const copy = [...projectsData];
     if (sortOption === 'latest') {
-      // Assuming higher id = newer
-      copy.sort((a, b) => b.id - a.id);
+      copy.sort((a, b) => b.date.localeCompare(a.date));
     } else {
-      // sort by period start year (extract first 4 chars)
-      copy.sort((a, b) => {
-        const aYear = parseInt(a.period.substring(0, 4)) || 0;
-        const bYear = parseInt(b.period.substring(0, 4)) || 0;
-        return aYear - bYear;
-      });
+      copy.sort((a, b) => a.date.localeCompare(b.date));
     }
     return copy;
   }, [sortOption]);
