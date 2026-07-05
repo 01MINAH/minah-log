@@ -1050,12 +1050,15 @@ footer p {
   color: var(--code-token-comment) !important;
   font-style: italic;
 }
+
 .token.punctuation {
   color: var(--code-token-punctuation) !important;
 }
+
 .token.namespace {
   opacity: .7;
 }
+
 .token.property,
 .token.tag,
 .token.boolean,
@@ -1065,6 +1068,7 @@ footer p {
 .token.deleted {
   color: var(--code-token-number) !important;
 }
+
 .token.selector,
 .token.attr-name,
 .token.string,
@@ -1073,6 +1077,7 @@ footer p {
 .token.inserted {
   color: var(--code-token-string) !important;
 }
+
 .token.operator,
 .token.entity,
 .token.url,
@@ -1080,16 +1085,19 @@ footer p {
 .style .token.string {
   color: var(--code-token-operator) !important;
 }
+
 .token.atrule,
 .token.attr-value,
 .token.keyword {
   color: var(--code-token-keyword) !important;
   font-weight: bold;
 }
+
 .token.function,
 .token.class-name {
   color: var(--code-token-function) !important;
 }
+
 .token.regex,
 .token.important,
 .token.variable {
@@ -1222,6 +1230,7 @@ footer p {
 
 /* Responsive Overrides */
 @media (max-width: 992px) {
+
   .project-detail-layout,
   .post-detail-layout {
     flex-direction: column;
