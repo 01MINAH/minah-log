@@ -2,7 +2,7 @@ export const postsData = [
   {
     id: 3,
     title: '꿈틀 프로젝트 - 도서 검색 쿼리 성능 최적화 트러블슈팅',
-    date: '2024-11-20',
+    date: '2026-07-03',
     description: 'LOWER, DISTINCT, 다중 JOIN을 함께 사용한 복합 쿼리의 Full Table Scan 문제를 EXPLAIN ANALYZE로 분석하고, 인덱스 설계와 쿼리 개선을 통해 약 30% 성능을 향상시킨 과정',
     image: '/assets/ggumtle_query_optimization_thumbnail.png',
     tags: ['Java', 'Spring Boot', 'MySQL', 'JPA', 'Troubleshooting', 'Performance'],
