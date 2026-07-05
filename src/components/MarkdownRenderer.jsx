@@ -64,6 +64,64 @@ const MarkdownRenderer = ({ markdownPath }) => {
       });
   }, [markdownPath]);
 
+  // Code syntax highlighting with PrismJS
+  useEffect(() => {
+    if (isLoading || error || !htmlContent) return;
+
+    const loadPrism = () => {
+      // 1. Load Prism CSS Tomorrow theme if not present
+      if (!document.getElementById('prism-css')) {
+        const link = document.createElement('link');
+        link.id = 'prism-css';
+        link.rel = 'stylesheet';
+        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css';
+        document.head.appendChild(link);
+      }
+
+      // 2. Load Prism Core JS
+      if (!document.getElementById('prism-js')) {
+        const script = document.createElement('script');
+        script.id = 'prism-js';
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js';
+        script.setAttribute('data-manual', 'true');
+        
+        script.onload = () => {
+          // 3. Load Prism Autoloader plugin
+          const autoloader = document.createElement('script');
+          autoloader.id = 'prism-autoloader';
+          autoloader.src = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js';
+          autoloader.onload = () => {
+            if (window.Prism && window.Prism.plugins && window.Prism.plugins.autoloader) {
+              window.Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+              window.Prism.highlightAll();
+            }
+          };
+          document.body.appendChild(autoloader);
+        };
+        document.body.appendChild(script);
+      } else {
+        // Highlight if Prism & autoloader are already initialized
+        if (window.Prism && window.Prism.plugins && window.Prism.plugins.autoloader) {
+          window.Prism.highlightAll();
+        } else {
+          // Fallback check if scripts are still loading
+          const checkInterval = setInterval(() => {
+            if (window.Prism && window.Prism.plugins && window.Prism.plugins.autoloader) {
+              window.Prism.plugins.autoloader.languages_path = 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/';
+              window.Prism.highlightAll();
+              clearInterval(checkInterval);
+            }
+          }, 100);
+          setTimeout(() => clearInterval(checkInterval), 3000);
+        }
+      }
+    };
+
+    // Delay slightly to ensure DOM has rendered
+    const timer = setTimeout(loadPrism, 50);
+    return () => clearTimeout(timer);
+  }, [htmlContent, isLoading, error]);
+
   if (isLoading) {
     return (
       <div style={{ padding: '3rem 0', textAlign: 'center', color: 'var(--text-muted)' }}>
